@@ -1,0 +1,9 @@
+[package]
+name = "ac3-formats"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+description = "Checked readers for the recovered Ace Combat 3 PAL formats"
+publish = false
+
+[dependencies]

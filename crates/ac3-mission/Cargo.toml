@@ -1,0 +1,10 @@
+[package]
+name = "ac3-mission"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+publish = false
+description = "Original PAL overlay 2 mission front-end control logic"
+
+[lints.rust]
+unsafe_code = "forbid"

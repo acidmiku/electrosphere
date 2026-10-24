@@ -1,0 +1,9 @@
+[package]
+name = "ac3-menu"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+publish = false
+description = "Native state transitions for Ace Combat 3 PAL overlay 1 menus"
+
+[dependencies]

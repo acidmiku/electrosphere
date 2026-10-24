@@ -1,0 +1,13 @@
+[package]
+name = "ac3-audio"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+publish = false
+description = "Checked AC3 sound banks and bounded SPU ADPCM sample decoding"
+
+[dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+
+[lints.rust]
+unsafe_code = "forbid"

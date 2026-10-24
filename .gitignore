@@ -1,0 +1,22 @@
+# Local disc, extracted copyrighted data, and generated reverse-engineering output.
+/*.bin
+/*.cue
+/extracted/
+/analysis/
+/vendor/
+*.pyc
+__pycache__/
+/target/
+/dist/
+/.sentry-native/
+/private/
+# The player's own files when playing from the checkout (see docs/BUILDING.md).
+/ac3.toml
+/ac3.toml.bak
+/card*.mcr
+/*.ac3state
+/*.iso
+/*.img
+# Nix
+/result
+/result-*

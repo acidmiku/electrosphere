@@ -1,0 +1,17 @@
+[package]
+name = "ac3-fallback"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+publish = false
+description = "DEVELOPMENT ONLY: MIPS interpreter fallback for untranslated routines (feature dev-fallback; never in the shipped ac3 binary)"
+
+[dependencies]
+ac3-gte = { path = "../ac3-gte" }
+serde_json = "1.0.154"
+
+[dev-dependencies]
+ac3-flight = { path = "../ac3-flight" }
+
+[lints.rust]
+unsafe_code = "forbid"

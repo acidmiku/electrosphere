@@ -1,0 +1,15 @@
+[package]
+name = "ac3-machine"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+publish = false
+description = "Version-independent machine model of the translated game: RAM, GTE, host calls, device models, snapshots, the game-version interface"
+
+[dependencies]
+ac3-gte = { path = "../ac3-gte" }
+serde_json = "1.0.154"
+serde = { version = "1.0.229", features = ["derive"] }
+
+[lints.rust]
+unsafe_code = "forbid"

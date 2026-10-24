@@ -1,0 +1,16 @@
+[package]
+name = "ac3-gte"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+publish = false
+description = "Native GTE register file and commands matching the pinned PCSX-Redux revision"
+
+[dev-dependencies]
+ac3-graphics = { path = "../ac3-graphics" }
+
+[dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+
+[lints.rust]
+unsafe_code = "forbid"

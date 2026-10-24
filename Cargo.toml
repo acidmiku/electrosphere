@@ -1,0 +1,80 @@
+[workspace]
+members = ["crates/ac3-core", "crates/ac3-formats", "crates/ac3-graphics", "crates/ac3-menu", "crates/ac3-audio", "crates/ac3-mission", "crates/ac3-gte", "crates/ac3-machine", "crates/ac3-flight", "crates/ac3-flight-jp", "crates/ac3-fallback"]
+resolver = "3"
+
+[package]
+name = "ac3-port"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+publish = false
+description = "A native Rust port of Ace Combat 3: Electrosphere (Japanese release)"
+
+[[bin]]
+name = "ac3"
+path = "src/main.rs"
+
+# The ac3 command line with the development interpreter fallback (JP port
+# work). Never shipped: the ac3 binary refuses to build with the feature.
+[[bin]]
+name = "ac3-dev"
+path = "src/bin/ac3_dev.rs"
+required-features = ["dev-fallback"]
+
+[features]
+# DEVELOPMENT ONLY: the interpreter fallback (crates/ac3-fallback) behind
+# dispatch::call. Off by default; only the ac3-dev binary may contain it.
+dev-fallback = ["dep:ac3-fallback", "ac3-flight/dev-fallback", "ac3-flight-jp/dev-fallback"]
+
+[dependencies]
+ac3-core = { path = "crates/ac3-core" }
+ac3-formats = { path = "crates/ac3-formats" }
+ac3-graphics = { path = "crates/ac3-graphics" }
+ac3-menu = { path = "crates/ac3-menu" }
+ac3-audio = { path = "crates/ac3-audio" }
+ac3-mission = { path = "crates/ac3-mission" }
+ac3-machine = { path = "crates/ac3-machine" }
+ac3-flight = { path = "crates/ac3-flight" }
+# The Japanese release's translation (generated from ac3-flight, plus its
+# patch layer); the player picks it by the disc's identity.
+ac3-flight-jp = { path = "crates/ac3-flight-jp" }
+# DEVELOPMENT ONLY (feature dev-fallback): the interpreter fallback.
+ac3-fallback = { path = "crates/ac3-fallback", optional = true }
+serde_json = "1.0.154"
+serde = { version = "1.0.229", features = ["derive"] }
+postcard = { version = "1.1.3", default-features = false, features = ["use-std"] }
+miniz_oxide = "0.8.9"
+sha2 = "0.10.9"
+png = "0.18.0"
+# Movie packs (src/movie_pack.rs): JPEG and WebP replacement frames, pure Rust.
+zune-jpeg = "=0.5.15"
+# RetroArch slang shader presets on the picture (src/present/shader.rs). Its
+# `native` feature (the default) compiles presets at run time with glslang
+# and SPIRV-Cross, C++ built by `cc` (tools/build-windows.py sets the
+# Windows target's C++ compiler). MPL-2.0 (docs/LIBRASHADER.md).
+librashader-runtime-wgpu = "=0.12.1"
+librashader-common = "=0.12.1"
+image-webp = { version = "=0.2.4", default-features = false }
+minifb = { version = "0.29.0", default-features = false, features = ["x11"] }
+rodio = { version = "=0.23.0", default-features = false, features = ["playback"] }
+gilrs = { version = "=0.11.2", default-features = false, features = ["xinput"] }
+winit = { version = "=0.30.13", default-features = false, features = ["rwh_06", "x11"] }
+wgpu = { version = "=30.0.1", default-features = false, features = ["std", "parking_lot", "wgsl", "dx12", "vulkan", "gles", "metal"] }
+pollster = "1.0.1"
+toml = "1.1.8"
+serde_ignored = "0.1.14"
+egui = { version = "=0.37.0", default-features = false, features = ["default_fonts"] }
+egui-winit = { version = "=0.37.0", default-features = false }
+egui-wgpu = { version = "=0.37.0", default-features = false }
+toml_edit = "0.25.17"
+
+[target.'cfg(windows)'.dependencies]
+# The OS clipboard in the launcher's text fields.
+egui-winit = { version = "=0.37.0", default-features = false, features = ["arboard"] }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[profile.release]
+overflow-checks = true
+

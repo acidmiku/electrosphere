@@ -1,0 +1,16 @@
+[package]
+name = "ac3-graphics"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+publish = false
+description = "Bounded TIM loading and native AC3 menu sprite rendering"
+
+[dev-dependencies]
+serde_json = "1.0.154"
+
+[dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+
+[lints.rust]
+unsafe_code = "forbid"

@@ -1,0 +1,22 @@
+[package]
+name = "ac3-flight"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+publish = false
+description = "Translated resident flight engine over an address-preserving machine model"
+
+[dependencies]
+ac3-gte = { path = "../ac3-gte" }
+ac3-machine = { path = "../ac3-machine" }
+serde_json = "1.0.154"
+serde = { version = "1.0.229", features = ["derive"] }
+ac3-fallback = { path = "../ac3-fallback", optional = true }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[features]
+# DEVELOPMENT ONLY: the interpreter fallback behind dispatch::call
+# (crates/ac3-fallback). Off by default; the shipped ac3 binary refuses it.
+dev-fallback = ["dep:ac3-fallback"]

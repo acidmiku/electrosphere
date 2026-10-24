@@ -1,0 +1,9 @@
+[package]
+name = "ac3-core"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96"
+description = "Native Rust translations of verified Ace Combat 3 PAL game logic"
+publish = false
+
+[dependencies]
